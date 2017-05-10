@@ -1,0 +1,21 @@
+Need more space. Definitely the game needs be 800x600, if I don't use it for the game field, there's enogh use for the space for INFO PANELS!
+MONEY DISPLAY needs to be visible at all times. A dedicated area for MONEY and LIVES needs to be added. Both could FLASH or somepin on change
+Position towers into a grid, lay traps freely?
+Info bubble should be stretchable, so it's not of fixed size for all kinds of info it displays.
+A simpler, less colourful and better readable design necessary. Someone complained the CREDITS are not readable! OMG!
+TRAP UPGRADES need a key binding, like U for example, and need not be too difficult to figure out how to upgrade a trap
+still not quite sure about the idea of three different ways to upgrade towers. while i do like it, i can see problems with it.
+An extra layer could be added to elevate the towers above the path, make the path sort of a canyon, and then the monsters could be hidden behind the cliff, so gives an impression of 3D:
+	basically, the idea is that thre is a simple DIRT layer, a separate layer which tells the game which parts of the DIRT are tredable by the monsters (path) and then an overlay to serve as the buildable area to form the top of the canyon. Parts of the path could be hidden below the buildable area co it looks kindof natural when monsters disappear from view.
+Shots are fun, there could be units with slower shots (like guided missiles).
+Shots could keep on flying, till out of screen, when target dead or gone before they hit it.
+Level constraints and difficulty degrees:
+	ability to constrain the number of towers/traps to be buit
+	difficulty level should be, like, start with less lives or less gold
+smaller buttons: for level selection and in-game menu
+	will need to have more than just two levels!
+music@fixed 50%vol, sounds@fixed 100% vol, + the ability to turn either OFF and ON
+pre-defined upgrade-lines, no multiplicative hocus-pocus
+maybe allow the player to use smooth gamespeed-multiplier? (or! just have a button to reset to 1x, and give a PLUS button to switch to 2x, 3x, 4x, 5x)
+maybe draw explosions of the shots?
+don't let the monsters rotate with the angle of the path. sucks. let them just spin freely around or something, like the blood-clots idea

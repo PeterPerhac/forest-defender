@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+
+<project name="ForestDefender" default="build-and-run" basedir=".">
+
+    <property file="build.properties"/>
+
+    <property name="include.src" value="false"/>
+    <property name="project.scene" value="com.perhac.forestdefender.LoadingScene"/>
+    <property name="project.jar" value="${project.scene}.jar"/>
+    <property name="project.assets.zip" value="ForestDefender.zip"/>
+    <property name="project.width" value="640"/>
+    <property name="project.height" value="480"/>
+    <property name="project.params" value=""/>
+    <property name="project.codebase" value=""/>
+    <property name="project.version" value="1.0"/>
+    <property name="pulpcore.build" value="debug"/>
+    <property name="library.path" value=""/>
+
+
+    <property name="pulpcore.version" value="0.11"/>
+    <property name="pulpcore.platform" value="applet"/>
+    <property name="autoload.assets.zip" value=""/>
+
+    <property name="pulpcore.java.language" value="1.5"/>
+
+    <property name="applet.template" value="res/Master/forest-defender.html"/>
+
+    <property name="src" value="src"/>
+    <property name="res" value="res"/>
+    <property name="lib" value="lib"/>
+    <property name="build" value="build/${pulpcore.platform}"/>
+    <property name="build.temp" value="${build}/temp"/>
+    <property name="build.classes" value="${build.temp}/classes"/>
+    <property name="build.res" value="${build.temp}"/>
+
+    <property name="core.jar.file"
+              value="${pulpcore.path}/pulpcore-${pulpcore.platform}-${pulpcore.build}-${pulpcore.version}.jar"/>
+    <property name="tools.jar.file" value="${pulpcore.path}/pulpcore-assettools-${pulpcore.version}.jar"/>
+    <property name="player.jar.file" value="${pulpcore.path}/pulpcore-player-${pulpcore.version}.jar"/>
+    <property name="retroweaver.jar.file" value="${pulpcore.path}/retroweaver-all.jar"/>
+
+    <taskdef resource="tasks.properties" classpath="${tools.jar.file}"/>
+    <taskdef resource="tasks.properties" classpath="${player.jar.file}"/>
+
+    <target name="-init">
+        <fail message="Required file not found: ${core.jar.file}">
+            <condition>
+                <not>
+                    <available file="${core.jar.file}"/>
+                </not>
+            </condition>
+        </fail>
+
+        <fail message="Required file not found: ${tools.jar.file}">
+            <condition>
+                <not>
+                    <available file="${tools.jar.file}"/>
+                </not>
+            </condition>
+        </fail>
+
+        <fail message="Required file not found: ${player.jar.file}">
+            <condition>
+                <not>
+                    <available file="${player.jar.file}"/>
+                </not>
+            </condition>
+        </fail>
+
+        <fail message="File not found: ${library.path}">
+            <condition>
+                <and>
+                    <isset property="library.path"/>
+                    <not>
+                        <equals arg1="${library.path}" arg2=""/>
+                    </not>
+                    <not>
+                        <available file="${library.path}"/>
+                    </not>
+                </and>
+            </condition>
+        </fail>
+
+        <fail message="Required property library.path is not defined">
+            <condition>
+                <and>
+                    <isset property="do.obfuscate"/>
+                    <or>
+                        <not>
+                            <isset property="library.path"/>
+                        </not>
+                        <equals arg1="${library.path}" arg2=""/>
+                    </or>
+                </and>
+            </condition>
+        </fail>
+
+        <condition property="do.retroweaver">
+            <equals arg1="${pulpcore.java.language}" arg2="1.5"/>
+        </condition>
+
+        <condition property="display.src" value="${src}/${project.scene}.java" else="">
+            <istrue value="${include.src}"/>
+        </condition>
+
+        <condition property="optimizationLevel" value="4" else="1">
+            <equals arg1="${pulpcore.build}" arg2="release"/>
+        </condition>
+
+        <buildnumber/>
+        <echo file="${src}/com/perhac/forestdefender/ProjectBuild.java"><![CDATA[
+        // Automatically generated file. Do not edit.
+		package com.perhac.forestdefender;
+		
+        public interface ProjectBuild {
+            public static final String VERSION = "${project.version}";
+            public static final String BUILD_NUMBER = "${build.number}";
+        }
+        ]]></echo>
+
+        <mkdir dir="${build}"/>
+        <mkdir dir="${build.temp}"/>
+        <mkdir dir="${build.classes}"/>
+        <mkdir dir="${build.res}"/>
+    </target>
+
+
+    <target name="compile" depends="-init">
+        <javac srcdir="${src}"
+               destdir="${build.classes}"
+               source="${pulpcore.java.language}"
+               target="${pulpcore.java.language}"
+               debug="on"
+               deprecation="on">
+
+            <include name="**/*.java"/>
+            <compilerarg line="-Xlint:all"/>
+
+            <classpath>
+                <pathelement location="${core.jar.file}"/>
+                <fileset dir="${lib}" erroronmissingdir="false">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+
+    <target name="jar" depends="compile">
+        <jar destfile="${build}/${project.jar}">
+            <fileset dir="${build.classes}" includes="**/*.class"/>
+            <fileset dir="${build.res}/jar"/>
+            <zipfileset src="${core.jar.file}" excludes="META-INF/**/*"/>
+            <zipgroupfileset dir="${lib}" includes="**/*.jar" erroronmissingdir="false">
+                <exclude name="META-INF/**/*"/>
+            </zipgroupfileset>
+        </jar>
+    </target>
+
+
+    <target name="res" depends="-init">
+        <pulpcore-assets srcDir="${res}/jar" destDir="${build.res}/jar"
+                         skipSourceFiles="false"
+                         optimizationLevel="${optimizationLevel}"/>
+
+        <pulpcore-assets srcDir="${res}/zip" destDir="${build.res}/zip"
+                         skipSourceFiles="false"
+                         optimizationLevel="${optimizationLevel}"/>
+
+        <delete file="${build}/${project.assets.zip}" failonerror="false"/>
+        <zip destfile="${build}/${project.assets.zip}" filesonly="true"
+             whenempty="create"
+             basedir="${build.res}/zip"/>
+    </target>
+
+
+    <target name="build" depends="res" description="Build"/>
+
+
+    <target name="build-and-run" depends="build, run" description="Build and Run"/>
+
+
+    <target name="run" description="Runs in PulpCore Player">
+        <pulpcore-player path="${basedir}/${build}" archive="${project.jar}"
+                         width="${project.width}" height="${project.height}"
+                         scene="${project.scene}" assets="${autoload.assets.zip}"
+                         params="${project.params}"
+                         waitUntilClosed="${pulpcore.player.wait}"/>
+    </target>
+
+
+</project>

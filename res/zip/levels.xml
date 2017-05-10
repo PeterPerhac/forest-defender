@@ -1,0 +1,1114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game>
+	<info>
+		<infotext>Welcome, my worthy friend!
+Creeps of all shapes, sizes, and colors are approaching your virgin forest.
+Your mission is to build TOWERS and to lay TRAPS to stop them from devastating it.
+
+CLICK or press SPACE to proceed to next info slide</infotext>
+		<infotext>There are two kinds of towers: FAST and STRONG.
+Simple stuff: build a tower, shoot at creeps, upgrade when necessary.
+
+You can click on a tower (any unit, in fact) to select it. A tower will show its range when selected.</infotext>
+		<infotext>There are five kinds of traps:
+ICE - sometimes freezes creeps for a short period of time
+TAR - slows down the creeps
+WATER - going through water, creeps lose health and are detained a moment
+POISON - inflicts damage over time
+DEATH - death traps sometimes manage to kill a creep no matter how strong</infotext>
+		<infotext>Some creeps are RESISTANT to a certain kind of trap(s). A resistance will be indicated in he side panel.
+
+Many creeps have a particular WEAKNESS and fall into certain kind of trap(s) easier or take more damage from them. Keep an eye on the side panel.</infotext>
+		<infotext>KEYBOARD SHORTCUTS
+S (strong tower), F (fast tower), 1-5 (traps)
+Use Q to toggle between speeds (1x/3x)
+SPACE (cancel construction), W (close unit info panel), N (Next wave of creeps)
+Hold SHIFT to build more than one unit at a time.
+Press ESCAPE to pause the game (show the in-game menu)</infotext>
+		<infotext>
+
+
+The end. Click or press space to re-view the instructions.
+</infotext>
+	</info>
+	<units>
+		<towers>
+			<tower type="fast">
+				<name>Fast Tower</name>
+				<cost>100</cost>
+				<!-- speed is how many milliseconds to pause between shots -->
+				<speed>333</speed>
+				<strength>15</strength>
+				<range>80</range>
+			</tower>
+			<tower type="strong">
+				<name>Strong Tower</name>
+				<cost>100</cost>
+				<speed>1000</speed>
+				<strength>50</strength>
+				<range>60</range>
+			</tower>
+		</towers>
+		<traps>
+			<trap type="ice">
+				<name>Ice Trap</name>
+				<!-- how much does it cost to build -->
+				<cost>50</cost>
+				<!-- how long does the effect last [ms] -->
+				<effect-duration>1000</effect-duration>
+				<!-- how likely is a monster to be inflicted (0..100) -->
+				<chance>25</chance>
+				<!--how much damage can it do to a monster [hp] -->
+				<strength>0</strength>	
+				<!-- how much it can slow a unit down in percent of speed per second -->
+				<!-- slow of ice is irrelevant, not used in game -->
+				<slow>10000</slow>			
+			</trap>
+			<trap type="tar">
+				<name>Tar Trap</name>
+				<cost>100</cost>
+				<effect-duration>4000</effect-duration>
+				<chance>100</chance>
+				<strength>0</strength>
+				<slow>30</slow>
+			</trap>
+			<trap type="water">
+				<name>Water Trap</name>
+				<cost>150</cost>
+				<effect-duration>150</effect-duration>
+				<chance>100</chance>
+				<strength>40</strength>
+				<slow>65</slow>
+			</trap>
+			<trap type="poison">
+				<name>Poison Trap</name>
+				<cost>250</cost>
+				<effect-duration>3000</effect-duration>
+				<chance>100</chance>
+				<strength>100</strength>
+				<slow>0</slow>
+			</trap>
+			<trap type="death">
+				<name>Death Trap</name>
+				<cost>300</cost>
+				<effect-duration>0</effect-duration>
+				<chance>20</chance>
+				<!-- strength of death is irrelevant, not used in game -->
+				<strength>1000000</strength>
+				<slow>0</slow>
+			</trap>
+		</traps>
+	</units>
+	<levels>
+		<level>
+			<name>Rowdy Scouts (training)</name>
+			<description>Training level: A bunch of rowdy scouts want to enter your forest. They are rather easy to stop, so don't mess it up. Follow the instructions shown before each wave.</description>
+			<file-prefix>scouts</file-prefix>
+			<money>2000</money>
+			<lives>20</lives>
+			<waves>
+				<wave>
+					<name>Rowdy Squares</name>
+					<message>Welcome to the training level.
+For the first invasion just build a few towers (strong or fast) and shoot the creeps up!
+
+Once a tower is built, you can click it and upgrade its capabilities.</message>
+					<monsters>
+						<monster-file>monster-blue-square</monster-file>
+						<count>20</count>
+						<spread>750</spread>
+						<hitpoints>250</hitpoints>
+						<reward>20</reward>
+						<speed>3</speed>
+						<weakness>
+						</weakness>
+						<resistance>
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Fatty Bombas</name>
+					<message>The creeps in the following wave are much tougher to eradicate.
+They are, however, rather easy to catch in any kind of trap - notice the weakness indicators (W) shown in the side panel >>
+When you see an invasion like this (i.e. creeps have many weaknesses), it's worth laying a few traps.
+You should consider placing traps in path intersections.</message>
+					<monsters>
+						<monster-file>monster-big-purple-jelly</monster-file>
+						<count>30</count>
+						<spread>1000</spread>
+						<hitpoints>800</hitpoints>
+						<reward>50</reward>
+						<speed>4</speed>
+						<weakness>
+							<water />
+							<ice />
+							<tar />
+							<poison />
+							<death />
+						</weakness>
+						<resistance>
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Hot blobs</name>
+					<message>Careful! Next invasion will be intensive.
+You can notice the creeps' weakness to water. Avoid defeat by placing a few water traps!
+Watch out for invasions with high creep count, these can easily burn down your forest.</message>
+					<monsters>
+						<monster-file>monster-flaming-jelly</monster-file>
+						<count>100</count>
+						<spread>100</spread>
+						<hitpoints>200</hitpoints>
+						<reward>15</reward>
+						<speed>5</speed>
+						<weakness>
+							<water />
+						</weakness>
+						<resistance>
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Storm</name>
+					<message>You can't slow down the creeps in the next wave. They are resistant to both tar and ice traps. See the resistance indicators (R) >>
+Laying a death trap near the entrance could help you with the fight. Poison traps are a good idea, too :-)</message>
+					<monsters>
+						<monster-file>monster-stormy-cloud</monster-file>
+						<count>15</count>
+						<spread>250</spread>
+						<hitpoints>750</hitpoints>
+						<reward>30</reward>
+						<speed>6</speed>
+						<weakness>
+							<poison />
+						</weakness>
+						<resistance>
+							<tar />
+							<ice />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Moths</name>
+					<message>Well done. In the next round death traps will be no good. Water traps too.
+Upgrade your towers (or poison traps) and lay some tar traps. By slowing the creeps down you will gain precious shooting time.</message>
+					<monsters>
+						<monster-file>monster-yellow-arrow</monster-file>
+						<count>30</count>
+						<spread>1500</spread>
+						<hitpoints>1200</hitpoints>
+						<reward>70</reward>
+						<speed>7</speed>
+						<weakness>
+						</weakness>
+						<resistance>
+							<water />
+							<death />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Worms</name>
+					<message>In the next invasion three tough suckers will crawl down the path.
+Time for tower upgrades, poison traps, you name it...
+Oh, and by the way, these creeps are recurrent - they will keep coming back until you have taken care of them.</message>
+					<monsters>
+						<monster-file>monster-worms</monster-file>
+						<count>3</count>
+						<spread>6000</spread>
+						<hitpoints>5000</hitpoints>
+						<reward>400</reward>
+						<speed>3</speed>
+						<weakness>
+						</weakness>
+						<resistance>
+							<death />
+						</resistance>
+						<recurrent/>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Worms on THC</name>
+					<message>Well done. There is another bunch of worms coming your way.
+There's more of them, but since they are high on drugs, you can catch them more easily with your traps.
+Time to upgrade traps, make them suffer :-)</message>
+					<monsters>
+						<monster-file>monster-rainbow-worms</monster-file>
+						<count>6</count>
+						<spread>3000</spread>
+						<hitpoints>5000</hitpoints>
+						<reward>200</reward>
+						<speed>4</speed>
+						<weakness>
+							<ice/>
+							<tar/>
+							<water/>
+							<poison/>
+							<death/>
+						</weakness>
+						<resistance>
+						</resistance>
+						<recurrent/>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Radioactive snot</name>
+					<message>The next invasion is a tricky one.
+Easy to win - easy to lose.
+Notice the creeps' resistance to all trap types - except! - the death trap. Build as many death traps as your funds will allow (7-8 should suffice, though).
+You can build multiple traps (towers too) by holding the SHIFT key while placing them.</message>
+					<monsters>
+						<monster-file>monster-radioactive-jelly</monster-file>
+						<count>75</count>
+						<spread>30</spread>
+						<hitpoints>666</hitpoints>
+						<reward>100</reward>
+						<speed>6</speed>
+						<weakness>
+							<death/>
+						</weakness>
+						<resistance>
+							<poison/>
+							<water/>
+							<tar/>
+							<ice/>
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Rusty cans</name>
+					<message>That's well done again!
+And look at all that cash! Invest it wisely.
+Next comes an easy round: creeps are easily slowed down, so make sure to lay tar/ice traps.</message>
+					<monsters>
+						<monster-file>monster-rusty-can</monster-file>
+						<count>20</count>
+						<spread>1000</spread>
+						<hitpoints>3500</hitpoints>
+						<reward>400</reward>
+						<speed>5</speed>
+						<weakness>
+							<ice />
+							<water />
+						</weakness>
+						<resistance>
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>The blue can</name>
+					<message>An extremely tough rascal coming up.
+It's best to upgrade a tar trap near your strongest tower and lay many ice traps around it to prolong his stay in the line of fire.
+Good luck!</message>
+					<monsters>
+						<monster-file>monster-spinning-blue-can</monster-file>
+						<count>1</count>
+						<spread>750</spread>
+						<hitpoints>25000</hitpoints>
+						<reward>2500</reward>
+						<speed>3</speed>
+						<weakness>
+							<ice />
+							<tar />
+						</weakness>
+						<resistance>
+							<death />
+						</resistance>
+						<recurrent/>
+					</monsters>
+				</wave>
+			</waves>
+		</level>
+		<level>
+			<name>Warm-up Round</name>
+			<description>There's a bunch of arsonists and vandals going to devastate your forest. You must spare no expense to stop them! Be careful though, it is not as easy as it may seem.</description>
+			<file-prefix>1</file-prefix>
+			<money>1000</money>
+			<lives>16</lives>
+			<waves>
+				<wave>
+					<name>Flaming Jelly</name>
+					<monsters>
+						<monster-file>monster-flaming-jelly</monster-file>
+						<count>20</count>
+						<!-- spread in milliseconds between appearance on stage -->
+						<spread>750</spread>
+						<hitpoints>150</hitpoints>
+						<reward>5</reward>
+						<!-- speed in percent of path per second -->
+						<speed>4</speed>
+						<!-- list weaknesses (ice, water, tar, poison, death) -->
+						<weakness>
+							<water/>
+						</weakness>
+						<!-- list resistance (ice, water, tar, poison, death) -->
+						<resistance>
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Flying Arrows</name>
+					<monsters>
+						<monster-file>monster-yellow-arrow</monster-file>
+						<count>3</count>
+						<spread>2000</spread>
+						<hitpoints>650</hitpoints>
+						<reward>70</reward>
+						<speed>2</speed>
+						<weakness>
+							<ice />
+							<poison />
+						</weakness>
+						<resistance>
+							<death />
+							<tar />
+							<water />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Many Jellies</name>
+					<monsters>
+						<monster-file>monster-flaming-jelly</monster-file>
+						<count>50</count>
+						<spread>150</spread>
+						<hitpoints>75</hitpoints>
+						<reward>2</reward>
+						<speed>5</speed>
+						<weakness>
+							<death />
+						</weakness>
+						<resistance>
+							<poison/>
+							<water />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Lightning storm</name>
+					<monsters>
+						<monster-file>monster-thunderbolt</monster-file>
+						<count>20</count>
+						<spread>2000</spread>
+						<hitpoints>500</hitpoints>
+						<reward>15</reward>
+						<speed>3</speed>
+						<weakness>
+							<ice />
+						</weakness>
+						<resistance>
+							<death />
+							<tar />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Blue Jellies</name>
+					<monsters>
+						<monster-file>monster-blue-square</monster-file>
+						<count>30</count>
+						<spread>2000</spread>
+						<hitpoints>700</hitpoints>
+						<reward>20</reward>
+						<speed>6</speed>
+						<weakness>
+							<poison />
+							<water />
+							<tar />
+						</weakness>
+						<resistance>
+							<ice />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Radioactive Blobs</name>
+					<monsters>
+						<monster-file>monster-radioactive-jelly</monster-file>
+						<count>20</count>
+						<spread>2000</spread>
+						<hitpoints>850</hitpoints>
+						<reward>30</reward>
+						<speed>5</speed>
+						<weakness>
+							<water />
+							<tar />
+						</weakness>
+						<resistance>
+							<poison />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Free Radicals</name>
+					<monsters>
+						<monster-file>monster-free-radical</monster-file>
+						<count>20</count>
+						<spread>1500</spread>
+						<hitpoints>900</hitpoints>
+						<reward>40</reward>
+						<speed>6</speed>
+						<weakness>
+							<water />
+							<ice />
+						</weakness>
+						<resistance>
+							<tar />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Rusty Cans</name>
+					<monsters>
+						<monster-file>monster-rusty-can</monster-file>
+						<count>10</count>
+						<spread>500</spread>
+						<hitpoints>1200</hitpoints>
+						<reward>40</reward>
+						<speed>4</speed>
+						<weakness>
+							<death/>
+							<poison/>
+						</weakness>
+						<resistance>
+							<water />
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>AIDS</name>
+					<monsters>
+						<monster-file>monster-aids-virus</monster-file>
+						<count>20</count>
+						<spread>1500</spread>
+						<hitpoints>1500</hitpoints>
+						<reward>100</reward>
+						<speed>4</speed>
+						<weakness>
+							<ice/>
+							<water/>
+							<death/>
+						</weakness>
+						<resistance>
+						</resistance>
+							<tar />
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>Blue cans</name>
+					<monsters>
+						<monster-file>monster-spinning-blue-can</monster-file>
+						<count>20</count>
+						<spread>300</spread>
+						<hitpoints>1000</hitpoints>
+						<reward>100</reward>
+						<speed>3.5</speed>
+						<weakness>
+							<ice/>
+							<water/>
+							<death/>
+						</weakness>
+						<resistance>
+						</resistance>
+							<tar />
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>Giant moth</name>
+					<monsters>
+						<monster-file>monster-yellow-arrow</monster-file>
+						<count>1</count>
+						<spread>2000</spread>
+						<hitpoints>10000</hitpoints>
+						<reward>100</reward>
+						<speed>2</speed>
+						<weakness>
+						</weakness>
+						<resistance>
+							<death />
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+			</waves>
+		</level>
+		<level>
+			<name>The Ultimate Forest Defence</name>
+			<description>The situation is getting critical. You'll need to use tactics, a smart combination of traps and towers, good timing and a bit of luck to defend your forest this time</description>
+			<file-prefix>2</file-prefix>
+			<money>200</money>
+			<lives>10</lives>
+			<waves>
+				<wave>
+					<name>Wasps</name>
+					<monsters>
+						<monster-file>monster-yellow-arrow</monster-file>
+						<count>20</count>
+						<spread>500</spread>
+						<hitpoints>100</hitpoints>
+						<reward>20</reward>
+						<speed>3</speed>
+						<weakness>
+							<water />
+							<poison />
+						</weakness>
+						<resistance>
+							<tar />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Rowdy Squares</name>
+					<monsters>
+						<monster-file>monster-blue-square</monster-file>
+						<count>10</count>
+						<spread>3000</spread>
+						<hitpoints>600</hitpoints>
+						<reward>25</reward>
+						<speed>5</speed>
+						<weakness>
+							<poison />
+							<ice />
+							<tar />
+						</weakness>
+						<resistance>
+							<water />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Ova of flame</name>
+					<monsters>
+						<monster-file>monster-flaming-jelly</monster-file>
+						<count>100</count>
+						<spread>200</spread>
+						<hitpoints>100</hitpoints>
+						<reward>3</reward>
+						<speed>7</speed>
+						<weakness>
+							<water />
+							<ice />
+						</weakness>
+						<resistance>
+							<poison/>
+							<death />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Gems of Wrath</name>
+					<monsters>
+						<monster-file>monster-gems-of-wrath</monster-file>
+						<count>20</count>
+						<spread>1000</spread>
+						<hitpoints>500</hitpoints>
+						<reward>30</reward>
+						<speed>8</speed>
+						<weakness>
+							<tar />
+							<death />
+						</weakness>
+						<resistance>
+							<ice />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Thunderbolts</name>
+					<monsters>
+						<monster-file>monster-thunderbolt</monster-file>
+						<count>30</count>
+						<spread>500</spread>
+						<hitpoints>200</hitpoints>
+						<reward>30</reward>
+						<speed>12</speed>
+						<weakness>
+							<tar />
+							<ice />
+						</weakness>
+						<resistance>
+							<water/>
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Big Guys</name>
+					<monsters>
+						<monster-file>monster-big-purple-jelly</monster-file>
+						<count>20</count>
+						<spread>1500</spread>
+						<hitpoints>1000</hitpoints>
+						<reward>20</reward>
+						<speed>4</speed>
+						<weakness>
+							<water />
+							<poison />
+							<death />
+						</weakness>
+						<resistance>
+							<tar />
+							<ice />						
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>Stormy Clouds</name>
+					<monsters>
+						<monster-file>monster-stormy-cloud</monster-file>
+						<count>10</count>
+						<spread>350</spread>
+						<hitpoints>1200</hitpoints>
+						<reward>200</reward>
+						<speed>3.5</speed>
+						<weakness>
+							<poison/>
+							<tar/>
+						</weakness>
+						<resistance>
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>Worms</name>
+					<monsters>
+						<monster-file>monster-worms</monster-file>
+						<count>40</count>
+						<spread>500</spread>
+						<hitpoints>800</hitpoints>
+						<reward>200</reward>
+						<speed>5</speed>
+						<weakness>
+							<poison/>
+							<tar/>
+							<death />
+						</weakness>
+						<resistance>
+							<water />
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>Giant Jelly</name>
+					<monsters>
+						<monster-file>monster-flaming-jelly</monster-file>
+						<count>1</count>
+						<spread>0</spread>
+						<hitpoints>12000</hitpoints>
+						<reward>1000</reward>
+						<speed>7</speed>
+						<weakness>
+							<poison />
+							<ice />
+						</weakness>
+						<resistance>
+							<death />
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>Invasion</name>
+					<monsters>
+						<monster-file>monster-pepek</monster-file>
+						<count>300</count>
+						<spread>300</spread>
+						<hitpoints>666</hitpoints>
+						<reward>20</reward>
+						<speed>3</speed>
+						<weakness>
+							<tar />
+							<ice />
+						</weakness>
+						<resistance>
+							<death />
+							<water />
+							<poison />
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+			</waves>
+		</level>
+		<level>
+			<name>Jungle Showdown</name>
+			<description>This will be a long fight. Hundreds of creeps are slithering through the swamps (gasp)</description>
+			<file-prefix>level-swamp</file-prefix>
+			<money>450</money>
+			<lives>10</lives>
+			<waves>
+				<wave>
+					<name>Thunderbolts</name>
+					<monsters>
+						<monster-file>monster-thunderbolt</monster-file>
+						<count>20</count>
+						<spread>500</spread>
+						<hitpoints>90</hitpoints>
+						<reward>20</reward>
+						<speed>7</speed>
+						<weakness>
+						</weakness>
+						<resistance>
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Stormy Clouds</name>
+					<monsters>
+						<monster-file>monster-stormy-cloud</monster-file>
+						<count>10</count>
+						<spread>350</spread>
+						<hitpoints>300</hitpoints>
+						<reward>100</reward>
+						<speed>5</speed>
+						<weakness>
+							<poison/>
+							<tar/>
+						</weakness>
+						<resistance>
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>Worms</name>
+					<monsters>
+						<monster-file>monster-worms</monster-file>
+						<count>20</count>
+						<spread>2000</spread>
+						<hitpoints>1000</hitpoints>
+						<reward>20</reward>
+						<speed>4</speed>
+						<weakness>
+							<ice />
+						</weakness>
+						<resistance>
+							<death />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Moth invasion</name>
+					<monsters>
+						<monster-file>monster-yellow-arrow</monster-file>
+						<count>100</count>
+						<spread>500</spread>
+						<hitpoints>300</hitpoints>
+						<reward>5</reward>
+						<speed>6</speed>
+						<weakness>
+						</weakness>
+						<resistance>
+							<tar />
+							<water />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>AIDS virus</name>
+					<monsters>
+						<monster-file>monster-aids-virus</monster-file>
+						<count>10</count>
+						<spread>1500</spread>
+						<hitpoints>2400</hitpoints>
+						<reward>60</reward>
+						<speed>3</speed>
+						<weakness>
+							<poison />
+							<death />
+						</weakness>
+						<resistance>
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Resistant AIDS</name>
+					<monsters>
+						<monster-file>monster-aids-virus</monster-file>
+						<count>50</count>
+						<spread>150</spread>
+						<hitpoints>175</hitpoints>
+						<reward>10</reward>
+						<speed>5</speed>
+						<weakness>
+						</weakness>
+						<resistance>
+							<ice />
+							<tar />
+							<poison />
+							<death />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Druggies</name>
+					<monsters>
+						<monster-file>monster-rainbow-worms</monster-file>
+						<count>20</count>
+						<spread>1500</spread>
+						<hitpoints>2400</hitpoints>
+						<reward>50</reward>
+						<speed>7</speed>
+						<weakness>
+							<ice />
+							<tar />
+							<water />
+							<poison />
+							<death />
+						</weakness>
+						<resistance>							
+						</resistance>
+						<recurrent/>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Gems of Revenge</name>
+					<monsters>
+						<monster-file>monster-gems-of-wrath</monster-file>
+						<count>20</count>
+						<spread>1000</spread>
+						<hitpoints>666</hitpoints>
+						<reward>30</reward>
+						<speed>15</speed>
+						<weakness>
+						</weakness>
+						<resistance>
+							<tar />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Blue cans</name>
+					<monsters>
+						<monster-file>monster-spinning-blue-can</monster-file>
+						<count>30</count>
+						<spread>2000</spread>
+						<hitpoints>3000</hitpoints>
+						<reward>200</reward>
+						<speed>5</speed>
+						<weakness>
+							<ice/>
+							<water/>
+						</weakness>
+						<resistance>
+						</resistance>
+							<tar />
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>Turbulent Squares</name>
+					<monsters>
+						<monster-file>monster-blue-square</monster-file>
+						<count>20</count>
+						<spread>750</spread>
+						<hitpoints>2000</hitpoints>
+						<reward>30</reward>
+						<speed>5</speed>
+						<weakness>
+							<ice />
+							<tar />
+						</weakness>
+						<resistance>
+							<water />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>BOSS</name>
+					<monsters>
+						<monster-file>monster-pepek</monster-file>
+						<count>1</count>
+						<spread>300</spread>
+						<hitpoints>12000</hitpoints>
+						<reward>1600</reward>
+						<speed>6</speed>
+						<weakness>
+							<tar />
+							<ice />
+						</weakness>
+						<resistance>
+							<death />
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>Free Radicals</name>
+					<monsters>
+						<monster-file>monster-free-radical</monster-file>
+						<count>20</count>
+						<spread>1000</spread>
+						<hitpoints>3500</hitpoints>
+						<reward>40</reward>
+						<speed>6</speed>
+						<weakness>
+							<water />
+							<ice />
+						</weakness>
+						<resistance>
+							<death />
+							<tar />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Rusty Cans</name>
+					<monsters>
+						<monster-file>monster-rusty-can</monster-file>
+						<count>10</count>
+						<spread>3500</spread>
+						<hitpoints>6000</hitpoints>
+						<reward>100</reward>
+						<speed>4</speed>
+						<weakness>
+							<water/>
+						</weakness>
+						<resistance>
+							<poison />
+							<death />
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>Ova of flame</name>
+					<monsters>
+						<monster-file>monster-flaming-jelly</monster-file>
+						<count>75</count>
+						<spread>100</spread>
+						<hitpoints>666</hitpoints>
+						<reward>5</reward>
+						<speed>8</speed>
+						<weakness>
+							<water />
+						</weakness>
+						<resistance>
+							<poison/>							
+							<death />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Tough Guys</name>
+					<monsters>
+						<monster-file>monster-big-purple-jelly</monster-file>
+						<count>50</count>
+						<spread>1500</spread>
+						<hitpoints>5000</hitpoints>
+						<reward>40</reward>
+						<speed>6</speed>
+						<weakness>
+							<poison />
+						</weakness>
+						<resistance>
+							<death />						
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>		
+				<wave>
+					<name>The Shrek</name>
+					<monsters>
+						<monster-file>monster-pepek-2</monster-file>
+						<count>1</count>
+						<spread>300</spread>
+						<hitpoints>20000</hitpoints>
+						<reward>6400</reward>
+						<speed>8</speed>
+						<weakness>
+							<poison />
+							<ice />
+						</weakness>
+						<resistance>
+							<tar />
+							<death />
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+				<wave>
+					<name>Radioactive Blobs</name>
+					<monsters>
+						<monster-file>monster-radioactive-jelly</monster-file>
+						<count>300</count>
+						<spread>10</spread>
+						<hitpoints>800</hitpoints>
+						<reward>40</reward>
+						<speed>6</speed>
+						<weakness>
+							<death />
+						</weakness>
+						<resistance>
+							<poison />
+							<water />
+							<ice />
+							<tar />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Junkies</name>
+					<monsters>
+						<monster-file>monster-rainbow-worms</monster-file>
+						<count>75</count>
+						<spread>750</spread>
+						<hitpoints>5000</hitpoints>
+						<reward>50</reward>
+						<speed>6</speed>
+						<weakness>
+							<ice />
+							<tar />
+							<water />
+							<poison />
+						</weakness>
+						<resistance>							
+							<death />
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>Lightning</name>
+					<monsters>
+						<monster-file>monster-thunderbolt</monster-file>
+						<count>50</count>
+						<spread>800</spread>
+						<hitpoints>9000</hitpoints>
+						<reward>100</reward>
+						<speed>6</speed>
+						<weakness>
+						</weakness>
+						<resistance>
+						</resistance>
+					</monsters>
+				</wave>
+				<wave>
+					<name>The Boss</name>
+					<monsters>
+						<monster-file>monster-pepek</monster-file>
+						<count>1</count>
+						<spread>300</spread>
+						<hitpoints>66666</hitpoints>
+						<reward>0</reward>
+						<speed>4</speed>
+						<weakness>
+						</weakness>
+						<resistance>
+							<death />
+						</resistance>
+						<recurrent />
+					</monsters>
+				</wave>
+			</waves>
+		</level>
+	</levels>
+	<music-tracks>
+		<track>forest.ogg</track>
+	</music-tracks>
+</game>
