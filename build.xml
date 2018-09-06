@@ -13,7 +13,7 @@
     <property name="project.params" value=""/>
     <property name="project.codebase" value=""/>
     <property name="project.version" value="1.0"/>
-    <property name="pulpcore.build" value="debug"/>
+    <property name="pulpcore.build" value="release"/>
     <property name="library.path" value=""/>
 
 
@@ -107,16 +107,16 @@
             <equals arg1="${pulpcore.build}" arg2="release"/>
         </condition>
 
-        <buildnumber/>
-        <echo file="${src}/com/perhac/forestdefender/ProjectBuild.java"><![CDATA[
-        // Automatically generated file. Do not edit.
-		package com.perhac.forestdefender;
+        <!-- <buildnumber/> -->
+        <!-- <echo file="${src}/com/perhac/forestdefender/ProjectBuild.java"><![CDATA[ -->
+        <!-- // Automatically generated file. Do not edit. -->
+		<!-- package com.perhac.forestdefender; -->
 		
-        public interface ProjectBuild {
-            public static final String VERSION = "${project.version}";
-            public static final String BUILD_NUMBER = "${build.number}";
-        }
-        ]]></echo>
+        <!-- public interface ProjectBuild { -->
+        <!--     public static final String VERSION = "${project.version}"; -->
+        <!--     public static final String BUILD_NUMBER = "${build.number}"; -->
+        <!-- } -->
+        <!-- ]]></echo> -->
 
         <mkdir dir="${build}"/>
         <mkdir dir="${build.temp}"/>
